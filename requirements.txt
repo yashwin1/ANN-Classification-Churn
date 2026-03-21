@@ -1,4 +1,5 @@
 tensorflow-cpu
+tensorflow
 pandas 
 numpy 
 scikit-learn
