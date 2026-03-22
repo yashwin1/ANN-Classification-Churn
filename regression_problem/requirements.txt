@@ -1,3 +1,4 @@
+tensorflow-cpu
 tensorflow
 pandas 
 numpy 
@@ -6,3 +7,5 @@ tensorboard
 matplotlib
 streamlit
 scikeras
+protobuf==3.20.3
+altair<5
