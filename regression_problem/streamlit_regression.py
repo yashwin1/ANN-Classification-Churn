@@ -7,16 +7,16 @@ import pandas as pd
 import pickle
 
 # load the pickle file
-model = load_model('regression_problem/regression_model.h5')
+model = load_model('regression_model.h5')
 
 # open in read binary mode
-with open('regression_problem/label_encoder_gender.pkl', 'rb') as file:
+with open('label_encoder_gender.pkl', 'rb') as file:
     label_encoder_gender = pickle.load(file)
 
-with open('regression_problem/onehot_encoder_geo.pkl', 'rb') as file:
+with open('onehot_encoder_geo.pkl', 'rb') as file:
     onehot_encoder_geo = pickle.load(file)
 
-with open('regression_problem/scaler.pkl', 'rb') as file:
+with open('scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
 # streamlit app
@@ -29,7 +29,7 @@ gender = st.selectbox('Gender', label_encoder_gender.classes_)
 age = st.slider('Age', 18, 92)
 balance = st.number_input("Balance")
 credit_score = st.number_input("Credit Score")
-estimated_salary = st.number_input("Estimated Salary")
+exited = st.selectbox('Exited', [0,1])
 tenure = st.slider("Tenure", 0, 10)
 num_of_products = st.slider("Number of Products", 1, 4)
 has_cr_card = st.selectbox("Has credit card", [0,1])
@@ -46,10 +46,10 @@ input_data = pd.DataFrame({
     'NumOfProducts': [num_of_products],
     'HasCrCard': [has_cr_card],
     'IsActiveMember': [is_active_member],
-    'EstimatedSalary': [estimated_salary]
+    'Exited': [exited]
 })
 
-geo_encoded = onehot_encoder_geo.transform([[geography]])
+geo_encoded = onehot_encoder_geo.transform([[geography]]).toarray()
 geo_encoded_df = pd.DataFrame(geo_encoded, columns=onehot_encoder_geo.get_feature_names_out())
 input_data = pd.concat([input_data.reset_index(drop=True), geo_encoded_df], axis=1)
 
