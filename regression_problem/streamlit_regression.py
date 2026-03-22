@@ -7,16 +7,16 @@ import pandas as pd
 import pickle
 
 # load the pickle file
-model = load_model('regression_model.h5')
+model = load_model('regression_problem/regression_model.h5')
 
 # open in read binary mode
-with open('label_encoder_gender.pkl', 'rb') as file:
+with open('regression_problem/label_encoder_gender.pkl', 'rb') as file:
     label_encoder_gender = pickle.load(file)
 
-with open('onehot_encoder_geo.pkl', 'rb') as file:
+with open('regression_problem/onehot_encoder_geo.pkl', 'rb') as file:
     onehot_encoder_geo = pickle.load(file)
 
-with open('scaler.pkl', 'rb') as file:
+with open('regression_problem/scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
 # streamlit app
